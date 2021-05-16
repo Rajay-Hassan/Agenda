@@ -1,0 +1,53 @@
+﻿@model mvc.Models.data.customers
+
+
+@{
+    ViewBag.Title = "ProfilCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profil Client</h2>
+<dl class="dl-horizontal">
+    @Html.HiddenFor(model => model.idCustomer)
+
+    <dt>
+        @Html.DisplayNameFor(model => model.lastname)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.lastname)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.firstname)
+
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.firstname)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.mail)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.mail)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.phoneNumber)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.phoneNumber)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.budget)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.budget)
+    </dd>
+    <dt>
+        @Html.ActionLink("Modifer", "Edit", new { id = Model.idCustomer }, new { @class = "btn btn-info" })
+    </dt>
+</dl>
+@Html.ActionLink("Retour à la liste", "ListCustomers", new { @class = "btn btn-link text-decoration-underline" })
+
+
+
+

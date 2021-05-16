@@ -1,0 +1,71 @@
+﻿
+@model IPagedList<mvc.Models.data.customers>
+
+@{
+    ViewBag.Title = "ListCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<h2>Liste clients</h2>
+@using (Html.BeginForm("listcustomers", "customers", FormMethod.Get))
+{
+    <input name="search" type="text" placeholder="saisir un nom" />
+    <input  type="submit" value="Search" placeholder="saisir un nom" />
+
+}
+
+<div class="text-center">
+    <img src="~/images/listeClients.png" />
+</div>
+<div class="table-responsive ">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().lastname)
+            <th>
+                @Html.DisplayNameFor(model => model.First().firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().phoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().budget)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.lastname
+                </td>
+                <td>
+                    @item.firstname
+                </td>
+                <td>
+                    @item.mail
+                </td>
+                <td>
+                    @item.phoneNumber
+                </td>
+                <td>
+                    @item.budget
+                </td>
+                <td>
+                    @Html.ActionLink("Profil", "profilcustomer", new { id = item.idCustomer }, new { @class = "btn btn-link" })
+                    <button class="btn btn-secondary">
+                        @Html.ActionLink("Supprimer", "Delete", new { id = item.idCustomer })
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@Html.PagedListPager(Model,i=> Url.Action("listcustomers", "customers", new { i, Search = Request.QueryString["search"]}))

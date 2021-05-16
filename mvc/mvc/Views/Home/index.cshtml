@@ -1,0 +1,50 @@
+﻿@model IEnumerable<mvc.Models.data.appointments>
+
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<figure>
+    <img src="~/images/rdvListe.png" />
+</figure>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dateHour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.brokers.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customers.lastname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.dateHour)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.subject)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.brokers.lastname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.customers.lastname)
+    </td>
+    <td onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce rendez-vous ?')">
+
+        @Html.ActionLink("Supprimer", "DeleteRdv", new { id = item.idAppointment })
+    </td>
+</tr>
+}
+
+</table>

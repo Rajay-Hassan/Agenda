@@ -1,0 +1,67 @@
+﻿@model mvc.Models.data.brokers
+@{
+    ViewBag.Title = "addbroker";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ajouter un courtier</h2>    
+@if (ViewBag.Message != null)
+{
+
+    <!-- Success Alert -->
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        Le nouveau courtier a bien été enregistré. Cliquez sur la croix pour fermer ce message.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+
+        <figure class="image">
+            <img src="~/images/broker.jpg" alt="broker" style="max-height:290px" />
+        </figure>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.lastname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.firstname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.firstname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.phoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn bg-info mt-2">Créer</button>
+            </div>
+        </div>
+    </div>
+
+}
